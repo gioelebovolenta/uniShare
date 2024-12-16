@@ -10,12 +10,16 @@
 
 <body>
     <div class="min-h-full">
-        <nav class="bg-gray-800 flex items-center justify-between px-4">
+        <nav class="bg-gray-800 flex items-center justify-between px-4 py-3">
             <!-- Logo a sinistra -->
             <div class="flex items-center">
                 <a href="/">
-                    <img src="{{ Vite::asset('resources/images/logo.png')}}" width="130" height="90" alt="uniShare">
+                    <img src="{{ Vite::asset('resources/images/logo.png')}}" width="170" height="130" alt="uniShare">
                 </a>
+            </div>
+
+            <div class="flex-1 text-center">
+                <h1 class="text-white text-3xl font-semibold">Fai fruttare i tuoi appunti!</h1>
             </div>
     
             <!-- Pulsanti a destra -->
