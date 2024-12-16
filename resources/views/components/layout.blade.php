@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-gray-100">
     <div class="min-h-full">
         <nav class="bg-gray-800 flex items-center justify-between px-4 py-3">
             <!-- Logo a sinistra -->
@@ -43,9 +43,9 @@
     <!-- HEADER -->
     <header class="flex h-20 items-center justify-between px-10 bg-white shadow">
         <div class="space-x-3">
-            <a href="#" class="font-bold bg-black/5 hover:bg-black/15 border rounded-xl shadow px-4 py-2 transition-colors duration-300">Libri</a>
-            <a href="#" class="font-bold bg-black/5 hover:bg-black/15 border rounded-xl shadow px-4 py-2 transition-colors duration-300">Appunti</a>
-            <a href="#" class="font-bold bg-black/5 hover:bg-black/15 border rounded-xl shadow px-4 py-2 transition-colors duration-300">Esami</a>
+            <x-tag>Libri</x-tag>
+            <x-tag>Appunti</x-tag>
+            <x-tag>Esami</x-tag>
         </div>
 
         <div>
