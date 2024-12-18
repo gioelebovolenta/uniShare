@@ -25,8 +25,8 @@
             <!-- Pulsanti a destra -->
             <div class="flex items-center mr-6 space-x-3">
                 @guest
-                    <x-nav-link href="/login" :active="request()->is('login')">Log in</x-nav-link>
-                    <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                    <x-nav-link href="/login" :active="request()->is('login')">Accedi</x-nav-link>
+                    <x-nav-link href="/register" :active="request()->is('register')">Registrati</x-nav-link>
                 @endguest
     
                 @auth

@@ -23,13 +23,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        $role = $this->faker->randomElement(['user', 'guest']);
+        $data = [
+            'role' => fake()->randomElement(['user', 'host']),
+            'remember_token' => Str::random(10),
+
             'name' => fake()->name(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
         ];
+
+        if($role !== 'guest') {
+            $data['name'] = $this->faker->firstName();
+            $data['last_name'] = 
+        }
+        
+        return $data;
     }
 
     /**
