@@ -19,7 +19,7 @@
             </div>
 
             <div class="flex-1 text-center">
-                <h1 class="text-white text-3xl font-semibold">Fai fruttare i tuoi appunti!</h1>
+                <h1 class="text-white text-3xl font-bold">Fai fruttare i tuoi appunti!</h1>
             </div>
     
             <!-- Pulsanti a destra -->
@@ -54,7 +54,7 @@
     </header>
 
     <!-- MAIN -->
-    <main class="mt-10 max-w-[986px] mx-auto">
+    <main class="mt-10 max-w-[986px]">
         {{ $slot }}
     </main>
 </body>
