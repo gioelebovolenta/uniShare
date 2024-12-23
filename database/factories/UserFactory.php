@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -12,9 +13,11 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * The name of the model that the factory corresponds to.
+     *
+     * @var string
      */
-    protected static ?string $password;
+    protected $model = User::class;
 
     /**
      * Define the model's default state.
@@ -23,33 +26,52 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $role = $this->faker->randomElement(['user', 'guest']);
-        $data = [
-            'role' => fake()->randomElement(['user', 'host']),
-            'remember_token' => Str::random(10),
-
-            'name' => fake()->name(),
-            'last_name' => fake()->lastName(),
-            'email' => fake()->unique()->safeEmail(),
+        return [
+            'name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'), // password predefinita
+            'role' => $this->faker->randomElement(['admin', 'utente', 'ospite']),
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
-
-        if($role !== 'guest') {
-            $data['name'] = $this->faker->firstName();
-            $data['last_name'] = 
-        }
-        
-        return $data;
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * Indica che l'utente è un amministratore.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified(): static
+    public function admin(): Factory
     {
         return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+            'role' => 'admin',
+        ]);
+    }
+
+    /**
+     * Indica che l'utente è un normale utente.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function utente(): Factory
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'utente',
+        ]);
+    }
+
+    /**
+     * Indica che l'utente è un ospite.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function ospite(): Factory
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'ospite',
         ]);
     }
 }
