@@ -15,11 +15,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade'); // Colonna user_id con foreign key (riferimento alla tabella users)
-            $table->string('name'); // Nome del prodotto (es. titolo del libro, nome degli appunti)
+            $table->string('title'); // Nome del prodotto (es. titolo del libro, nome degli appunti)
             $table->text('description')->nullable(); // Descrizione del prodotto
             $table->decimal('price', 10, 2); // Prezzo del prodotto
             $table->string('subject')->nullable(); // Materia o area disciplinare
-            $table->enum('product_type', ['book', 'notes', 'exam']); // Tipo di prodotto (libro, appunto, esame)
+            $table->enum('type', ['libro', 'appunti', 'esame']); // Tipo di prodotto (libro, appunto, esame)
+            $table->integer('pages')->nullable(); // Numero di pagine del prodotto
             $table->timestamps();
         });
     }

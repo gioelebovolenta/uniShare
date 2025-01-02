@@ -16,7 +16,7 @@ class AddColumnsToUsersTableLastNameAndRole extends Migration
         Schema::table('users', function (Blueprint $table) {
             // Aggiungi i nuovi campi
             $table->string('last_name')->after('name');
-            $table->enum('role', ['admin', 'user', 'guest'])->default('user')->after('email');
+            $table->enum('role', ['admin', 'utente', 'ospite'])->default('utente')->after('email');
         });
     }
 
@@ -29,7 +29,7 @@ class AddColumnsToUsersTableLastNameAndRole extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // Rimuovi le colonne aggiunte nel caso di rollback
-            $table->dropColumn(['first_name', 'last_name', 'role']);
+            $table->dropColumn(['last_name', 'role']);
         });
     }
 }
