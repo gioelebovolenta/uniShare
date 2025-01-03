@@ -29,7 +29,13 @@ class AddColumnsToUsersTableLastNameAndRole extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // Rimuovi le colonne aggiunte nel caso di rollback
-            $table->dropColumn(['last_name', 'role']);
+            if (Schema::hasColumn('users', 'last_name')) {
+                $table->dropColumn('last_name');
+            }
+
+            if (Schema::hasColumn('users', 'role')) {
+                $table->dropColumn('role');
+            }
         });
     }
 }

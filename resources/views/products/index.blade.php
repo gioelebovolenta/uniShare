@@ -16,10 +16,14 @@
             <img src="{{ Vite::asset('resources/images/books.png')}}" alt="Book" class="w-full h-auto">
         </div>
         
-{{--     <section class="mt-10">
-        <div>
-            <x-supplies />
-        </div>
-    </section> --}}
+        <section class="mt-10">
+            <x-section-heading>Materiali recenti</x-section-heading>
+
+            <div class="mt-6 space-y-6">
+                @foreach ($products as $product)
+                    <x-product-card :$product />
+                @endforeach
+            </div>
+        </section>
     </div>
 </x-layout>

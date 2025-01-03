@@ -41,14 +41,24 @@ class ProductFactory extends Factory
         // Scegli una materia associata alla facoltà
         $title = $this->faker->randomElement($faculties[$subject]);
 
+        // Scegli il tipo di prodotto
+        $type = $this->faker->randomElement(['libro', 'appunti', 'esame']);
+
+        // Definisci il numero di pagine in base al tipo
+        $pages = match ($type) {
+            'libro', 'appunti' => $this->faker->numberBetween(20, 500), // Range da 20 a 500
+            'esame' => $this->faker->numberBetween(1, 15),             // Range da 1 a 15
+            default => 0,                                              // Default nel caso di errori
+        };
+
         return [
             'user_id' => User::factory(), // Associa il prodotto a un utente creato dalla UserFactory
             'title' => $title,
             'description' => $this->faker->sentence(),
-            'price' => $this->faker->randomFloat(2, 5, 100), // Prezzo tra 5 e 500
+            'price' => $this->faker->randomFloat(2, 5, 100), // Prezzo tra 5 e 100
             'subject' => $subject,
-            'type' => $this->faker->randomElement(['libro', 'appunti', 'esame']),
-            'pages' => $this->faker->numberBetween(50, 1000), // Numero di pagine
+            'type' => $type,
+            'pages' => $pages, // Numero di pagine generato dinamicamente
         ];
     }
 }
